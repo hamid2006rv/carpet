@@ -6,7 +6,7 @@ import 'package:http_parser/http_parser.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class Service {
-  final String url = '194.33.105.85:5000';
+  final String url = '87.107.147.247:5000';
 
   Future<dynamic> get_price(String img_path) async {
     final uri = Uri.http(url, 'predict');
@@ -22,12 +22,26 @@ class Service {
     } else
       return -1;
   }
+  Future<dynamic> get_price_with_feature(Map<String, int> query) async {
+    final uri = Uri.http(url, 'feature');
+    var request = http.MultipartRequest("POST", uri);
+    var body = json.encode(query);
+    var response = await http.post(uri,
+        headers: {"Content-Type": "application/json"},
+        body: body
+    );
 
+    if (response.statusCode == 200) {
+      var jsResult = json.decode(response.body);
+      return jsResult;
+    } else
+      return -1;
+  }
   Future<bool> check_connection() async {
     bool result = await InternetConnectionChecker().hasConnection;
     if (result == false) return false;
 
-    final uri = Uri.http(url, '/');
+    final uri = Uri.http(url, 'feature');
     final response = await http.get(uri);
     if (response.body.isEmpty)
       return false;
