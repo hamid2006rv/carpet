@@ -1,0 +1,30 @@
+{
+  "menu1": "A.I with Image",
+  "@menu1":{
+  "description" : "menu1"
+  },
+   "menu2": "A.I with Features",
+    "@menu2":{
+    "description" : "menu2"
+    },
+   "pricemenu": "Price With A.I",
+    "@pricemenu":{
+    "description" : "pricemenu"
+    },
+   "estimate": "Estimate Value for The Carpet",
+    "@estimate":{
+    "description" : "estimate"
+    },
+   "yes": "Yes",
+    "@yes":{
+    "description" : "yes"
+    },
+   "no": "No",
+    "@no":{
+    "description" : "no"
+    },
+   "other": "Other",
+    "@other":{
+    "description" : "other"
+    }
+}

@@ -66,88 +66,93 @@ class _CammeraScreenState extends State<CammeraScreen> {
               )),
           Positioned(
             bottom: 10,
-            child: Row(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  child: image != null
-                      ? Image.file(
-                    File(image!.path),
-                    fit: BoxFit.cover,
-                  )
-                      : Text(''),
-                ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  child: Center(
-                    child: waiting == false
-                        ? InkWell(
-                        child: Icon(
-                          Icons.photo_camera,
-                          size: 55,
-                          color: Colors.white,
-                        ),
-                        onTap: () async {
-                          setState(() {
-                            waiting = true;
-                          });
-                          controller!.takePicture().then((value) {
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    child: image != null
+                        ? Image.file(
+                      File(image!.path),
+                      fit: BoxFit.cover,
+                    )
+                        : Text(''),
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    child: Center(
+                      child: waiting == false
+                          ? InkWell(
+                          child: Icon(
+                            Icons.photo_camera,
+                            size: 55,
+                            color: Colors.white,
+                          ),
+                          onTap: () async {
                             setState(() {
-                              image = value;
+                              waiting = true;
                             });
-                          });
-                          setState(() {
-                            waiting = false;
-                          });
-                        })
-                        : Container(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                        strokeWidth: 1,
+                            controller!.takePicture().then((value) {
+                              setState(() {
+                                image = value;
+                              });
+                            });
+                            setState(() {
+                              waiting = false;
+                            });
+                          })
+                          : Container(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 1,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                image == null
-                    ? Text('')
-                    : Container(
-                  width: 100,
-                  height: 100,
-                  child: Center(
-                    child: InkWell(
-                      onTap: () async {
-                        var chk = await service.check_connection();
-                        if (chk == false) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(SnackBar(
-                            content: Text(
-                              'Error: Unable to connect server, please check internet!',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22),
-                            ),
-                            backgroundColor: Colors.red,
-                          ));
-                          return;
-                        }
-                        Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (contex) =>
-                                    Result_page(image: image)));
-                      },
-                      child: Icon(
-                        Icons.send,
-                        size: 45,
-                        color: Colors.green,
+                  image == null
+                      ? Text('')
+                      : Container(
+                    width: 100,
+                    height: 100,
+                    child: Center(
+                      child: InkWell(
+                        onTap: () async {
+                          var chk = await service.check_connection();
+                          if (chk == false) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(
+                              content: Text(
+                                'Error: Unable to connect server, please check internet!',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 22),
+                              ),
+                              backgroundColor: Colors.red,
+                            ));
+                            return;
+                          }
+                          Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (contex) =>
+                                      Result_page(image: image)));
+                        },
+                        child: Icon(
+                          Icons.send,
+                          size: 45,
+                          color: Colors.green,
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
           Positioned(

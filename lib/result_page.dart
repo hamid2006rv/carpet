@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:carpet/service.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Result_page extends StatefulWidget {
   late XFile? image;
@@ -70,7 +71,7 @@ class _Result_pageState extends State<Result_page> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            'Price With A.I',
+            AppLocalizations.of(context)!.pricemenu,
             style: TextStyle(color: Colors.white, fontSize: 22),
           ),
           backgroundColor: Colors.grey),
@@ -108,13 +109,17 @@ class _Result_pageState extends State<Result_page> {
                           SizedBox(
                             height: 10,
                           ),
-                          Text('Estimated value for Carptet'),
+                          Text(AppLocalizations.of(context)!.estimate,
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
                           SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: get_stars(int.parse(snapshot.data['y'])),
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: get_stars(int.parse(snapshot.data['y'])),
+                            ),
                           ),
                           SizedBox(
                             height: 10,

@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:carpet/service.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Result_Feature extends StatefulWidget {
   late Map<String, int> query;
@@ -71,7 +72,7 @@ class _Result_FeatureState extends State<Result_Feature> {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            'Price With A.I',
+            AppLocalizations.of(context)!.pricemenu,
             style: TextStyle(color: Colors.white, fontSize: 22),
           ),
           backgroundColor: Colors.grey),
@@ -93,8 +94,7 @@ class _Result_FeatureState extends State<Result_Feature> {
                     child: Text('We can not estimate carpet'),
                   );
                 else {
-                  int v =
-                  double.parse(snapshot.data['y']).toInt();
+                  int v = double.parse(snapshot.data['y']).toInt();
                   return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
@@ -103,13 +103,19 @@ class _Result_FeatureState extends State<Result_Feature> {
                           SizedBox(
                             height: 10,
                           ),
-                          Text('Estimated value for Carptet'),
+                          Text(
+                            AppLocalizations.of(context)!.estimate,
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: get_stars(v),
+                          Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: get_stars(v),
+                            ),
                           ),
                           SizedBox(
                             height: 10,

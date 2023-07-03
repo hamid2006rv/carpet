@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:carpet/result_feature.dart';
 import 'package:flutter/material.dart';
 
+import 'main.dart';
 import 'model/question.dart';
 import 'service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FeatureScreen extends StatefulWidget {
   const FeatureScreen({Key? key}) : super(key: key);
@@ -15,17 +19,29 @@ class _FeatureScreenState extends State<FeatureScreen> {
   final Service service = Service();
   List<Question> questions = [
     Question(
-        question_text: 'Is your carpet vintage?',
+        question_text: {
+          'en': 'Is your carpet vintage?',
+          'fa': 'آیا فرش شما قدیمی است؟',
+          'ar': 'هل سجادتك قديمة؟'
+        },
         answers_map: {'vintage': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet handmade?',
+        question_text: {
+          'en': 'Is your carpet handmade?',
+          'fa': 'آیا فرش شما دستباف است؟',
+          'ar': 'هل سجادتك مصنوعة يدويًا؟'
+        },
         answers_map: {'handmade': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Which material is your carpet made?',
+        question_text: {
+          'en': 'Which material is your carpet made?',
+          'fa': 'فرش شما از کدام متریال است؟',
+          'ar': 'ما هي المواد التي صنعها سجادتك؟'
+        },
         answers_map: {
           'cotton': 1,
           'wool': 2,
@@ -37,52 +53,92 @@ class _FeatureScreenState extends State<FeatureScreen> {
         type: Question_type.Multi_Choices,
         answer: []),
     Question(
-        question_text: 'Was your carpet made using handspun techniques?',
+        question_text: {
+          'en': 'Was your carpet made using handspun techniques?',
+          'fa': 'آیا فرش شما با استفاده از تکنیک های دستی ساخته شده است؟',
+          'ar': 'هل تم صنع سجادتك باستخدام تقنيات الغزل اليدوي؟'
+        },
         answers_map: {'handspun': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet made from vegetable fibers?',
+        question_text: {
+          'en': 'Is your carpet made from vegetable fibers?',
+          'fa': 'آیا فرش شما از الیاف گیاهی ساخته شده است؟',
+          'ar': 'هل سجادتك مصنوعة من ألياف نباتية؟'
+        },
         answers_map: {'vegetable': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet considered antique?',
+        question_text: {
+          'en': 'Is your carpet considered antique?',
+          'fa': 'آیا فرش شما عتیقه محسوب می شود؟',
+          'ar': 'هل سجادتك تعتبر قديمة؟'
+        },
         answers_map: {'antique': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet considered traditional?',
+        question_text: {
+          'en': 'Is your carpet considered traditional?',
+          'fa': 'آیا فرش شما سنتی محسوب می شود؟',
+          'ar': 'هل سجادتك تعتبر تقليدية؟'
+        },
         answers_map: {'traditional': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet made from natural materials?',
+        question_text: {
+          'en': 'Is your carpet made from natural materials?',
+          'fa': 'آیا فرش شما از مواد طبیعی ساخته شده است؟',
+          'ar': 'هل سجادتك مصنوعة من مواد طبيعية؟'
+        },
         answers_map: {'natural': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet made from organic materials?',
+        question_text: {
+          'en': 'Is your carpet made from organic materials?',
+          'fa': 'آیا فرش شما از مواد آلی ساخته شده است؟',
+          'ar': 'هل سجادتك مصنوعة من مواد عضوية؟'
+        },
         answers_map: {'organic': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet a kilim?',
+        question_text: {
+          'en': 'Is your carpet a kilim?',
+          'fa': 'آیا فرش شما گلیم است؟',
+          'ar': 'هل سجادتك كليم؟'
+        },
         answers_map: {'kilim': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'Is your carpet considered a luxury item?',
+        question_text: {
+          'en': 'Is your carpet considered a luxury item?',
+          'fa': 'آیا فرش شما یک کالای لوکس محسوب می شود؟',
+          'ar': 'هل سجادتك تعتبر قطعة فاخرة؟'
+        },
         answers_map: {'luxury': 1},
         type: Question_type.YN,
         answer: [0]),
     Question(
-        question_text: 'In which country was your carpet made?',
+        question_text: {
+          'en': 'In which country was your carpet made?',
+          'fa': 'فرش شما در کدام کشور بافته شده است؟',
+          'ar': 'في أي بلد صنعت سجادتك؟'
+        },
         answers_map: {'turkish': 1, 'moroccan': 2, 'persian': 3, 'pakistan': 4},
         type: Question_type.Single_Choices,
         answer: [0]),
     Question(
-        question_text: 'When was your carpet created?',
+        question_text: {
+          'en': 'When was your carpet created?',
+          'fa': 'فرش شما حدودا چه زمانی ساخته شد؟',
+          'ar': 'متى تم صنع سجادتك؟'
+        },
         answers_map: {
           '18th': 1,
           '19th': 2,
@@ -106,6 +162,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String lc = MyApp.of(context)!.getLocale();
     return Scaffold(
       body: Stack(
         children: [
@@ -137,7 +194,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
                                 height: 20,
                               ),
                               Text(
-                                questions[index].question_text,
+                                questions[index].question_text[lc]!,
                                 style: TextStyle(fontSize: 25),
                               ),
                               SizedBox(
@@ -155,48 +212,51 @@ class _FeatureScreenState extends State<FeatureScreen> {
                           ),
                         ),
                       )),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ElevatedButton(
-                              onPressed: previousPage,
-                              child: Icon(Icons.keyboard_arrow_left)),
-                          if (index == questions.length - 1)
+                      Directionality(
+                      textDirection:TextDirection.ltr,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             ElevatedButton(
-                                onPressed: () async {
-                                  Map<String, int> query = {};
-                                  for (Question q in questions) {
-                                    Map<String, int> _q =
-                                        q.get_target_question();
-                                    for (String k in _q.keys) query[k] = _q[k]!;
-                                  }
-                                  print(query);
-                                  var chk = await service.check_connection();
-                                  if (chk == false) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text(
-                                        'Error: Unable to connect server, please check internet!',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 22),
-                                      ),
-                                      backgroundColor: Colors.red,
-                                    ));
-                                    return;
-                                  }
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (contex) =>
-                                          Result_Feature(query: query)));
-                                },
-                                child: Text(
-                                  'A.I. price?',
-                                  style: TextStyle(fontSize: 25),
-                                ))
-                          else
-                            ElevatedButton(
-                                onPressed: nextPage,
-                                child: Icon(Icons.keyboard_arrow_right)),
-                        ],
+                                onPressed: previousPage,
+                                child: Icon(Icons.keyboard_arrow_left)),
+                            if (index == questions.length - 1)
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    Map<String, int> query = {};
+                                    for (Question q in questions) {
+                                      Map<String, int> _q =
+                                          q.get_target_question();
+                                      for (String k in _q.keys) query[k] = _q[k]!;
+                                    }
+                                    print(query);
+                                    var chk = await service.check_connection();
+                                    if (chk == false) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                          'Error: Unable to connect server, please check internet!',
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 22),
+                                        ),
+                                        backgroundColor: Colors.red,
+                                      ));
+                                      return;
+                                    }
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (contex) =>
+                                            Result_Feature(query: query)));
+                                  },
+                                  child: Text(
+                                    'A.I. price?',
+                                    style: TextStyle(fontSize: 25),
+                                  ))
+                            else
+                              ElevatedButton(
+                                  onPressed: nextPage,
+                                  child: Icon(Icons.keyboard_arrow_right)),
+                          ],
+                        ),
                       )
                     ],
                   ),
@@ -224,7 +284,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
     return Column(
       children: [
         ListTile(
-          title: Text('Yes'),
+          title: Text(AppLocalizations.of(context)!.yes),
           leading: Radio(
             value: 1,
             groupValue: questions[index].answer[0],
@@ -236,7 +296,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
           ),
         ),
         ListTile(
-          title: Text('No'),
+          title: Text(AppLocalizations.of(context)!.no),
           leading: Radio(
             value: 0,
             groupValue: questions[index].answer[0],
@@ -267,7 +327,7 @@ class _FeatureScreenState extends State<FeatureScreen> {
       ));
     }
     children.add(ListTile(
-      title: Text('Other'),
+      title: Text(AppLocalizations.of(context)!.other),
       leading: Radio(
           value: 0,
           groupValue: questions[index].answer[0],

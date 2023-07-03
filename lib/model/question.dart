@@ -1,6 +1,6 @@
 enum Question_type  {YN, Single_Choices, Multi_Choices}
 class Question {
-  String question_text;
+  Map<String,String> question_text;
   Question_type type;
   List<int> answer ;
   Map<String, int> answers_map;
